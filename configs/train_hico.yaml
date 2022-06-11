@@ -1,0 +1,68 @@
+train_dataset: hicodet
+train_dataset_args:
+  im_dir: ./assets/data/hico
+  split: train
+  augment_plus: true
+
+test_dataset: hicodet
+test_dataset_args:
+  im_dir: ./assets/data/hico
+  split: test
+
+model: classifier
+model_args:
+  encoder: transparent_superpixel_encoder
+  encoder_args: {encoder: swin_base, use_boxes_dim: False}
+  classifier: max-pooling-classifier-twoheads
+  classifier_args: {n_classes: 600, n_classes1: 117, n_classes2: 80}
+load_encoder: ./cache/swin_base-{}.pth
+encoder_pretrain: imagenet
+
+train_batches: 100000
+ep_per_batch: 16
+max_epoch: 30
+
+# 1 -- systematic-easy
+# 2 -- systematic-hard
+# 3 -- original (two heads)
+eval_mode: 3
+
+###########
+# RelViT
+###########
+relvit: True
+relvit_weight: 0.2
+# temperature
+relvit_loss_tau: 0.04
+# 0 -- both
+# 1 -- local only
+# 2 -- global only
+relvit_local_only: 0
+# 0 -- EsViT
+# 1 -- EsViT+RelViT
+# 2 -- RelViT
+relvit_mode: 1
+# False -- Most recent
+# True -- Uniform
+relvit_sample_uniform: False
+# 0 & 600 -- hoi
+# 1 & 117 -- verb
+# 2 & 80 -- object
+relvit_concept_use: 0
+relvit_num_concepts: 600
+
+###########
+# MoCo
+###########
+relvit_moco_m: 0.999
+relvit_moco_use_queue: False
+relvit_moco_K: 10
+# 49 for pvtv2 and swin-s, 196 for vit-s-16
+relvit_num_tokens: 49
+
+optimizer: adamw
+optimizer_args: {lr: 0.00015, weight_decay: 0, 'milestones': [15, 25]}
+
+print_freq: 10
+save_epoch: 1
+eval_epoch: 1
