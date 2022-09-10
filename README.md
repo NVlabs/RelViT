@@ -11,6 +11,10 @@ by [Xiaojian Ma](http://web.cs.ucla.edu/~xm), [Weili Nie](https://weilinie.githu
 
 [arXiv](https://arxiv.org/abs/2204.11167) | [Poster](https://web.cs.ucla.edu/~xm/file/relvit_iclr22_poster.pdf) | [Slides](https://web.cs.ucla.edu/~xm/file/relvit_iclr22_slides.pdf)
 
+## News
+
+- 🔥🔥 **09/10/2022**: Pre-trained models on GQA are now released.
+
 
 ## Abstract
 
@@ -101,9 +105,17 @@ bash scripts/train_gqa_image.sh configs/train_gqa.yaml --test_only --test_model 
 
 </details>
 
+## Pre-trained models
+
+| tag                 | encoder      | experiment | result | URL                                                                                        |
+|---------------------|--------------|------------|--------|--------------------------------------------------------------------------------------------|
+| `swin-small-relvit` | `swin_small` | GQA (val)  | 61.38  | [link](https://drive.google.com/file/d/1efkfy7bM6PmzKZy6ffQQq98OkLLgcZd3/view?usp=sharing) |
+| `swin-base-relvit`  | `swin_base`  | GQA (val)  | 65.54  | [link](https://drive.google.com/file/d/1u66PqHJiqGJZsXWeLsjooVAFEdkjDVK3/view?usp=sharing) |
+
+
 ## License
 
-Please check the LICENSE file. This work may be used non-commercially, meaning for research or evaluation purposes only. For business inquiries, please contact researchinquiries@nvidia.com.
+Please check the LICENSE file for both the code and the released pre-trained models. This work may be used non-commercially, meaning for research or evaluation purposes only. For business inquiries, please contact researchinquiries@nvidia.com.
 
 ## Acknowledgement
 
